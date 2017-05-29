@@ -1,12 +1,12 @@
 local alien_move = {}
 local alien_anim_frame = 1
 local alien_pos_x = 812
-local alien_pos_y = 100
+local alien_pos_y = 300
 local alien_anim_time = 0
 local alien_dir= -1
  function love.load()
   love.graphics.setBackgroundColor(126,189,252)
- for x=1,4,1 do
+ for x=1,10,1 do
    alien_move[x] = love.graphics.newImage("alien_move_0" .. x .. ".png")
    end
  end
@@ -20,7 +20,7 @@ function love.update(dt)
      alien_anim_time = alien_anim_time + dt
      if alien_anim_time > 0.2 then
        alien_anim_frame = alien_anim_frame + 1
-       if alien_anim_frame > 4 then
+       if alien_anim_frame > 10 then
           alien_anim_frame = 1
        end
        alien_anim_time = 0
@@ -32,12 +32,12 @@ function love.update(dt)
      alien_anim_time = alien_anim_time + dt
       if alien_anim_time > 0.2 then
          alien_anim_frame = alien_anim_frame + 1
-         if alien_anim_frame > 4 then
+         if alien_anim_frame > 10 then
             alien_anim_frame = 1
            end
          alien_anim_time = 0
        end
-     end 
+     end
 end
  function love.keyreleased(key)
    if key == "a" or key == "d" then
