@@ -5,15 +5,14 @@
  local alien_anim_time = 0
  local alien_dir= -1
  
- 
 function alien_move.load()
  for x=1,4,1 do
    alien_move[x] = love.graphics.newImage("alien_move_0" .. x .. ".png")
    end
  end
 function alien_move.update(dt)
-   if alien_pos_x - 125 < 0 then
-      alien_pos_x = 125
+   if alien_pos_x - 280 < 0 then
+      alien_pos_x = 280
      end 
    if love.keyboard.isDown("right") then
      alien_dir = 1
