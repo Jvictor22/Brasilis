@@ -1,7 +1,7 @@
 local alien_move = {}
 local alien_anim_frame = 1
-local alien_pos_x = 812
-local alien_pos_y = 230
+local alien_pos_x = 630
+local alien_pos_y = 370
 local alien_anim_time = 0
 local alien_dir= -1
  function alien_move.load()
@@ -45,6 +45,6 @@ end
    end
   end
 function alien_move.draw()
-  love.graphics.draw(alien_move[alien_anim_frame], alien_pos_x, alien_pos_y, 0, 2.5*alien_dir, 2.5)
+  love.graphics.draw(alien_move[alien_anim_frame], alien_pos_x, alien_pos_y, 0, 2.5*alien_dir, 2.5,alien_move[alien_anim_frame]:getWidth()/2, alien_move[alien_anim_frame]:getHeight ()/2)
 end
 return alien_move
