@@ -1,7 +1,7 @@
 local girl_walk  = require "girl"
 local alien_move = require "alien"
- sucess = love.window.setMode(800, 600, {resizable=true})
- 
+ sucess = love.window.setMode(800, 600, {resizable = true})
+          love.window.setTitle("Terra Brasilis")
 function love.load()
   alien_move.load()
   
