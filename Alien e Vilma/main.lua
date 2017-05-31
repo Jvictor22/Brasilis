@@ -1,5 +1,7 @@
 local girl_walk  = require "girl"
 local alien_move = require "alien"
+ sucess = love.window.setMode(800, 600, {resizable=true})
+ 
 function love.load()
   alien_move.load()
   
@@ -24,7 +26,11 @@ end
 function love.keyreleased(key)
  alien_move.keyreleased(key)
  girl_walk.keyreleased(key)
-end 
+end
+
+
+
+
 function love.draw()
  love.graphics.draw(background, 0, 00, 0,1.78,5)
 
@@ -35,8 +41,11 @@ function love.draw()
  
  girl_walk.draw()
  
-  love.graphics.draw (imagem_ground,0,487)
+ love.graphics.draw (imagem_ground,0,487)
  love.graphics.draw (imagem_ground,220,487)
  love.graphics.draw (imagem_ground,440,487)
  love.graphics.draw (imagem_ground,660,487)
-end  
+end 
+function love.keypressed(key)
+  girl_walk.keypressed(key)
+ end
