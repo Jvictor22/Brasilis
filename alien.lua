@@ -57,11 +57,7 @@ function alien_move.update(dt, girl_pos_x, girl_pos_y)
        end
      end --]]
 end
-function alien_move.keyreleased(key)
-   if key == "left" or key == "right" then
-     alien_anim_frame = 1
-   end
-  end
+
 function alien_move.draw()
   love.graphics.draw(alien_move[alien_anim_frame], alien_pos_x, alien_pos_y, 0, 2.5*alien_dir, 2.5,alien_move[alien_anim_frame]:getWidth()/2, alien_move[alien_anim_frame]:getHeight ()/2)
 end

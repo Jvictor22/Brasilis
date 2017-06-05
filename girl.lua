@@ -51,7 +51,7 @@ function girl_walk.update(dt)
 end
 end
 function girl_walk.keypressed(key) 
-  if (key == "w") and collided then
+  if (key == "w" or key == " ") and collided then
     collided   = false
     girl_vel_y = -200
  end

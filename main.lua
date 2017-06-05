@@ -24,13 +24,8 @@ alien_move.update(dt, girl_pos_x, girl_pos_y)
 girl_walk.update(dt)
 end
 function love.keyreleased(key)
- alien_move.keyreleased(key)
  girl_walk.keyreleased(key)
 end
-
-
-
-
 function love.draw()
  love.graphics.draw(background, 0, 00, 0,1.78,5)
 
