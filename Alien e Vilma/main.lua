@@ -2,6 +2,7 @@ local girl_walk  = require "girl"
 local alien_move = require "alien"
  sucess = love.window.setMode(800, 600, {resizable = true})
           love.window.setTitle("Terra Brasilis")
+          
 function love.load()
   alien_move.load()
   
@@ -20,7 +21,7 @@ function love.load()
   imagem_height = imagem_ground : getHeight()
 end 
 function love.update(dt)
-alien_move.update(dt)
+alien_move.update(dt, girl_pos_x, girl_pos_y)
 girl_walk.update(dt)
 end
 function love.keyreleased(key)

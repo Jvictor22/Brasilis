@@ -1,7 +1,7 @@
 local girl_walk       = {}
 local girl_anim_frame = 1
-local girl_pos_x      = 70
-local girl_pos_y      = 100
+girl_pos_x      = 70
+girl_pos_y      = 100
 local girl_anim_time  = 1
 local girl_dir        = 1
 local gravity         = 200
@@ -19,6 +19,7 @@ function girl_walk.update(dt)
    end 
   if girl_pos_y > 487 - 0.253*girl_walk[1]:getHeight()/2 + 5 then
      girl_pos_y = 487 - 0.253 *girl_walk[1]:getHeight()/2 + 5
+     collided = true
    end
   if not collided then
     girl_vel_y = girl_vel_y + gravity*dt
@@ -49,9 +50,8 @@ function girl_walk.update(dt)
      end
 end
 end
---[[apertar o w várias vezes = pulo várias vezes]]--
 function girl_walk.keypressed(key) 
-  if key == "w" then
+  if (key == "w") and collided then
     collided   = false
     girl_vel_y = -200
  end
