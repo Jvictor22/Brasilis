@@ -49,4 +49,7 @@ function love.draw()
 end 
 function love.keypressed(key)
   girl_walk.keypressed(key)
+  if (key=="escape") then
+    love.event.quit()
+    end
  end

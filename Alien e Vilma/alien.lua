@@ -20,9 +20,9 @@ function alien_move.update(dt, girl_pos_x, girl_pos_y)
    d = hipotenusa(alien_pos_x, girl_pos_x, alien_pos_y, girl_pos_y)
    dir = girl_pos_x - alien_pos_x
    if dir ~= 0 then
-      dir = dir / math.abs(dir)
+alien_dir = dir / math.abs(dir)
    if d< 400 then
-     alien_pos_x = alien_pos_x + (100*dt*dir)
+     alien_pos_x = alien_pos_x + (100*dt*alien_dir)
      alien_anim_time = alien_anim_time + dt
      if alien_anim_time > 0.2 then
        alien_anim_frame = alien_anim_frame + 1
