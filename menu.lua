@@ -1,9 +1,10 @@
 local menu = {}
-
+local BGimage
 local botaoStart
 
 function menu.load()
-	botaoStart = {
+  BGimage = love.graphics.newImage('brasil.png')
+  botaoStart = {
 		x = 200,
 		y = 100,
 		width = 400,
@@ -25,8 +26,11 @@ function menu.mousepressed(x,y,but)
 end
 
 function menu.draw()
-  
+  love.graphics.draw(BGimage)
 	love.graphics.rectangle('fill',botaoStart.x,botaoStart.y,botaoStart.width,botaoStart.height)
+  love.graphics.setColor(0,0,0)
+  love.graphics.print('INICIAR', botaoStart.x,botaoStart.y)
+  love.graphics.setColor(255,255,255)
  
 end
 
