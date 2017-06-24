@@ -14,7 +14,7 @@ function tiro.update (dt)
   if tempoAteAtirar < 0 then 
     atira = true
   end
-  if love.keyboard.isDown(" k ") and atirar then
+  if love.keyboard.isDown("k") and atirar then
     novoTiro = { x = girl_pos_x, y = girl_pos_y, img = imgTiro}
     table.insert(tiros, novoTiro)
     atira = false

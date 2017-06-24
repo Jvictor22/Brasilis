@@ -1,4 +1,4 @@
- local alien_move = {}
+local alien_move = {}
  local alien_anim_frame = 1
  local alien_pos_x = 630
  local alien_pos_y = 370
