@@ -59,4 +59,7 @@ function game.keypressed(key)
     end 
  end
  
- return game
+function game.mousepressed()
+   end
+
+return game
