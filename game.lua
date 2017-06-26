@@ -1,11 +1,13 @@
 local game = {}
 
+
 local girl_walk  = require "girl"
 local alien_move = require "alien"
  sucess = love.window.setMode(800, 600, {resizable = true})
           love.window.setTitle("Terra Brasilis")
           
 function game.load()
+  
   alien_move.load()
   
   girl_walk.load()
@@ -55,8 +57,11 @@ end
 function game.keypressed(key)
   girl_walk.keypressed(key)
   if key == "escape" then
-    love.event.quit()
+    love.changeToPause()
     end 
  end
+ 
+ function game.mousepressed()
+   end
  
  return game
