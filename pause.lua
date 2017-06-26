@@ -2,6 +2,11 @@ local pause = {}
 local botaoResume
 local botaoMenu
 local BGimage
+local music
+
+function pause.pauseReceiveMusic(m)
+  music = m
+end
 
 function pause.load()
   BGimage = love.graphics.newImage('brasil.png')
@@ -36,6 +41,7 @@ function pause.mousepressed(x,y,but)
 		love.changeToGame()
 	end
   if checkPoint(botaoMenu,x,y) then
+    music:stop()
 		love.changeToMenu()
 	end
 end

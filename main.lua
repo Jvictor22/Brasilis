@@ -19,10 +19,12 @@ end
 
 function love.changeToGame()
 	state = game
+  game.start()
 end
 
-function love.changeToPause()
+function love.changeToPause(music)
   state = pause
+  pause.pauseReceiveMusic(music)
 end
 
 function love.mousepressed(x,y,but)
@@ -39,4 +41,4 @@ end
 
 function love.changeToMenu()
   state = menu
-  end
+end

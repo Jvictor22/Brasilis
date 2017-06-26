@@ -5,7 +5,12 @@ local girl_walk  = require "girl"
 local alien_move = require "alien"
  sucess = love.window.setMode(800, 600, {resizable = true})
           love.window.setTitle("Terra Brasilis")
-          
+
+function game.start()
+  music:setLooping( true )
+  music:play()
+end
+
 function game.load()
   
   alien_move.load()
@@ -25,8 +30,6 @@ function game.load()
   altura  = background: getHeight()
   
   music = love.audio.newSource( 'samba.mp3', 'static' )
-music:setLooping( true )
-music:play()
 end 
 function game.update(dt)
 alien_move.update(dt, girl_pos_x, girl_pos_y)
@@ -57,7 +60,7 @@ end
 function game.keypressed(key)
   girl_walk.keypressed(key)
   if key == "escape" then
-    love.changeToPause()
+    love.changeToPause(music)
     end 
  end
  
