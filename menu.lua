@@ -33,4 +33,10 @@ function menu.draw()
   love.graphics.draw(image, 200, 100)
 end
 
+function menu.keypressed()
+end
+
+function menu.keyreleased()
+end
+
 return menu
