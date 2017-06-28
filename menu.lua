@@ -1,6 +1,7 @@
 local menu = {}
 local BGimage
 local botaoStart
+local botaoQuit
 image = love.graphics.newImage('iniciar.png')
 function menu.load()
   BGimage = love.graphics.newImage('brasil.png')
@@ -11,7 +12,13 @@ function menu.load()
 		height = 150,
     
 	}
-  
+   botaoQuit = {
+		x = 200,
+		y = 300,
+		width = 400,
+		height = 150,
+    
+	}
 end
 
 function menu.update(dt)
@@ -25,12 +32,16 @@ function menu.mousepressed(x,y,but)
 	if checkPoint(botaoStart,x,y) then
 		love.changeToGame()
 	end
+  if checkPoint(botaoQuit,x,y) then
+		love.event.quit()
+	end
 end
 
 function menu.draw()
   love.graphics.draw(BGimage)
-	love.graphics.rectangle('fill',botaoStart.x,botaoStart.y,botaoStart.width,botaoStart.height)
+	love.graphics.rectangle('line',botaoStart.x,botaoStart.y,botaoStart.width,botaoStart.height)
   love.graphics.draw(image, 200, 100)
+  love.graphics.rectangle('line',botaoQuit.x,botaoQuit.y,botaoQuit.width,botaoQuit.height)
 end
 
 function menu.keypressed()

@@ -1,13 +1,12 @@
 local enemy = {}
-enemy.delay = 2.5
+enemy.delay = 1
 enemy.SpawnTime = enemy.delay
 
-local imgEnemy = {}
+imgEnemy = {}
 
 function enemy.load()
   for x=1,8,1 do
   imgEnemy[x] = love.graphics.newImage("robo_0" .. x .. ".png")
-  imgE = imgEnemy[x]
    end 
 end 
 function enemy.update(dt)
@@ -39,4 +38,3 @@ function enemy.draw()
     end 
    end 
    return enemy
-      
