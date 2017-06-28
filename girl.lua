@@ -8,57 +8,35 @@ local gravity         = 200
 local girl_vel_y      = 200
 local collided        = false
 
-bullet = {}
+local bullet = {}
 bullet.anim_frame =  1
-bullet.x      = girl_pos_x
-bullet.y      = girl_pos_y
+bullet.x      = 70
+bullet.y      = 100
 bullet.anim_time = 1
 bullet.dir =  1
-bullet.vel_y = 200
+bullet.vel_y    = 200
 
-tiros = {}
-atirar = true
-delayTiro = 0.1
-timeAtirar = delayTiro
-imgTiro = love.graphics.newImage( "tiro.png" )
- 
-function checaColisao (x1, y1, w1, h1, x2, y2, w2, h2)
-return x1 < x2 + w2 and x2 < x1 + w1 and y1 < y2 + h2 and y2 < y1 + h1
-end 
---[[Tentando fazer colisão
-function colisoes.update ( dt )
-  for x, alien in ipairs(alien) do
- for j, tiro in ipairs( tiros ) do
-  if checaColisao ( tiro.x, tiro.y, imgTiro:getWidth(), imgTiro:getHeight(), alien.posX, alien.posY, alien[alien.anim_frame]:getWidth(), alien[alien.anim_frame]:getHeight() ) then
-    table.remove(tiros, j )
-    table.remove(alien, x)
-    end 
-   end 
-  end 
- end 
- ]]--
 function girl_walk.load()
   for x = 1,9,1 do
     girl_walk[x] = love.graphics.newImage("girl_walk_0" .. x .. ".png")
   end
-    for i = 1,3,1 do
-    bullet[i] = love.graphics.newImage("Shoot_0" .. i .. ".png")
+    for x = 1,3,1 do
+    bullet[x] = love.graphics.newImage("Shoot_0" .. x .. ".png")
   end
 end
 function girl_walk.update(dt)
- if girl_pos_x - 50 < 0 then
+  if girl_pos_x - 50 < 0 then
      girl_pos_x = 50
    end 
- if girl_pos_y > 487 - 0.253*girl_walk[1]:getHeight()/2 + 5 then
+  if girl_pos_y > 487 - 0.253*girl_walk[1]:getHeight()/2 + 5 then
      girl_pos_y = 487 - 0.253 *girl_walk[1]:getHeight()/2 + 5
      collided = true
    end
- if not collided then
+  if not collided then
     girl_vel_y = girl_vel_y + gravity*dt
     girl_pos_y = girl_pos_y + girl_vel_y*dt
     end
- --Vilma andando
- if love.keyboard.isDown("d") then
+  if love.keyboard.isDown("d") then
     girl_dir = 1
     girl_pos_x = girl_pos_x + (170 * dt)
     girl_anim_time = girl_anim_time + dt
@@ -70,7 +48,7 @@ function girl_walk.update(dt)
       girl_anim_time = 0.14
     end
   end
- if love.keyboard.isDown("a") then
+  if love.keyboard.isDown("a") then
     girl_dir = -1
     girl_pos_x = girl_pos_x + (170 * girl_dir* dt)
     girl_anim_time = girl_anim_time + dt
@@ -82,9 +60,13 @@ function girl_walk.update(dt)
       girl_anim_time = 0.14
      end
 end
- if love.keyboard.isDown("k") then
-    bullet.dir = girl_dir
-    bullet.x = girl_pos_x + (dt)
+end
+function girl_walk.keypressed(key) 
+  if (key == "w") and collided then
+    collided   = false
+    girl_vel_y = -200
+    if (key=="k") then
+      bullet.dir = 1
     bullet.anim_time = bullet.anim_time + dt
     if bullet.anim_time > 0.2 then
       bullet.anim_frame = bullet.anim_frame + 1
@@ -92,63 +74,23 @@ end
         bullet.anim_frame = 1
       end
       bullet.anim_time = 0.14
-    end
-  end
-  
---Vilma andando
-
---Tiro andando 
-timeAtirar = timeAtirar - ( 1*dt )
-if timeAtirar < 0 then
-  atirar = true
-end 
-if love.keyboard.isDown("k") and atirar then
-   novoTiro = { x = girl_pos_x + 50*girl_dir, y = girl_pos_y, img = imgTiro , dir = girl_dir} 
-   table.insert( tiros, novoTiro)
-   atirar = false 
-   timeAtirar = delayTiro
- end
- for i, tiro in ipairs (tiros) do
-   --tiro_dir = girl_dir
-   tiro.x = tiro.x + tiro.dir*(500*dt) 
-   if tiro.x < 0 then
-     table.remove(tiros, i)
-   end 
- end 
- --Tiro Andando
-end
-function girl_walk.keypressed(key) 
-  if (key == "w") and collided then
-    collided   = false
-    girl_vel_y = -200
+    end 
+    end 
  end
 end 
 function girl_walk.keyreleased(key)
    if key == "a" or key == "d" then
       girl_anim_frame = 1
    end
+   if key == "k" then
+     girl_anim_frame = 1
+     end 
  end
-function girl_walk.draw()
-  -- Desenho dela andando e atirando
-  if love.keyboard.isDown("d") then 
+function girl_walk.draw() 
     love.graphics.draw(girl_walk[girl_anim_frame], girl_pos_x, girl_pos_y,0,0.253 * girl_dir,0.253,girl_walk[girl_anim_frame]:getWidth()/2, girl_walk[girl_anim_frame]:getHeight ()/2)
-  elseif love.keyboard.isDown("a") then
-    love.graphics.draw(girl_walk[girl_anim_frame], girl_pos_x, girl_pos_y,0,0.253 * girl_dir,0.253,girl_walk[girl_anim_frame]:getWidth()/2, girl_walk[girl_anim_frame]:getHeight ()/2)
-    elseif love.keyboard.isDown("k") then
-              love.graphics.draw(bullet[bullet.anim_frame], girl_pos_x, girl_pos_y,0,0.253 * bullet.dir,0.253,bullet[bullet.anim_frame]:getWidth()/2, bullet[bullet.anim_frame]:getHeight ()/2)
-  else
-    love.graphics.draw(girl_walk[girl_anim_frame], girl_pos_x, girl_pos_y,0,0.253 * girl_dir,0.253,girl_walk[girl_anim_frame]:getWidth()/2, girl_walk[girl_anim_frame]:getHeight ()/2)
-  end 
-  -- Desenho dela andando e atirando
+if love.keypressed(key=="k") then 
+      love.graphics.draw(bullet[bullet.anim_frame], bullet.x, bullet.y,0,0.253 * bullet.dir,0.253,bullet[bullet.anim_frame]:getWidth()/2, bullet[bullet.anim_frame]:getHeight ()/2)
   
-  -- Desenho do tiro
-  for i, tiro in ipairs( tiros ) do 
-    love.graphics.draw( tiro.img, tiro.x , tiro.y , 0, tiro.dir, 1, imgTiro:getWidth()/2, imgTiro:getHeight()/2)
-  end 
-  love.graphics.setColor(255,0,0)
-  --love.graphics.rectangle('fill',girl_pos_x,girl_pos_y,150,150)
-  love.graphics.setColor(255,255,255)
-  
-  -- Desenho do tiro
-end
-  return girl_walk
+end 
+end 
+return girl_walk

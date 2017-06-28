@@ -38,5 +38,4 @@ function enemy.draw()
       love.graphics.draw(imgEnemy[enemies.frame], enemies.x, enemies.y,0,-0.253, 0.253, imgEnemy[enemies.frame]:getWidth()/2, imgEnemy[enemies.frame]:getHeight()/2)
     end 
    end 
-   return enemy
-      
+return enemy

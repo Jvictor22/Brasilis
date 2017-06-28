@@ -88,4 +88,4 @@ function alien.draw()
        love.graphics.draw(alien[alien.anim_frame], alien.posX, alien.posY, 0, 2.5*alien.dir, 2.5,alien[alien.anim_frame]:getWidth()/2, alien[alien.anim_frame]:getHeight ()/2)
       end 
 end
- return alien
+return alien
